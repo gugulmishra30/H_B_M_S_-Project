@@ -9,33 +9,44 @@
 
 🔧 Tech Stack:
 
-✅ Backend Language: Java 8  
-✅ Framework: Spring Boot 2.4.x  
-✅ ORM & Persistence: Hibernate + Spring Data JPA  
-✅ Database: MySQL 8+  
-✅ View Layer: JSP (via `tomcat-embed-jasper`), JSTL  
-✅ API Support: `@RestController` for REST endpoints  
-✅ Validation: Hibernate Validator (`@Valid`, JSR-380)  
-✅ Build Tool: Maven  
-✅ IDE Compatible: Eclipse  
-✅ Logging: SLF4J / Logback  
-✅ Hot Reloading: Spring Boot DevTools  
+✅ Backend Language: Java 8
+✅ Framework: Spring Boot 2.4.x (Microservices Architecture)
+✅ Architecture: Microservices with RESTful APIs
+✅ Security: Spring Security with JWT Token
+✅ Service Discovery: Netflix Eureka
+✅ Inter-Service Communication: OpenFeign Clients
+✅ Persistence: Hibernate + Spring Data JPA
+✅ Database: MySQL 8.x
+✅ View Layer (if used): JSP + JSTL (tomcat-embed-jasper)
+✅ File Storage: AWS S3 (for image uploads)
+✅ API Support: @RestController-based endpoints
+✅ Validation: Hibernate Validator (@Valid, Bean Validation - JSR 380)
+✅ API Gateway: Spring Cloud Gateway
+✅ Logging: SLF4J / Logback
+✅ Build Tool: Maven
+✅ IDE: STS
+✅ Dev Tools: Spring Boot DevTools (for hot reload)  
 
 ---
 
 💡 Key Features:
 
-✅ Role-Based Login (Admin, Receptionist)  
-✅ Room Booking (Create/Update/Delete/View)  
-✅ Customer Details Management  
-✅ Invoice Generation & Bill Calculation  
-✅ Room Availability Tracking  
-✅ Add/View/Remove Hotel Staff  
-✅ Global Exception Handling  
-✅ Validation on all forms using `@Valid`  
-✅ Logging & Error Tracking  
-✅ JSP-based front-end with Bootstrap UI  
-✅ REST API for frontend or mobile use  
+✅ Microservices-based modular architecture.
+✅ Role-Based Login (Admin, Receptionist) with JWT security.
+✅ Room Booking (Create, Update, Delete, View).
+✅ Customer Details Management with proper validations.
+✅ Invoice Generation with auto bill calculation.
+✅ Room Availability & Status Tracking.
+✅ Add / View / Remove Hotel Staff (Employee Management).
+✅ AWS S3 integration for image upload (e.g., hotel images, customer docs).
+✅ REST APIs for frontend/mobile use (@RestController-based).
+✅ JSP-based front-end UI using Bootstrap + JSTL (where applicable).
+✅ Global Exception Handling using @ControllerAdvice.
+✅ Validation on all forms using @Valid (Hibernate Validator).
+✅ Logging & Error Tracking via SLF4J and Logback.
+✅ Seamless service communication via OpenFeign clients.
+✅ Service registration & discovery via Netflix Eureka.
+✅ Centralized routing and security with Spring Cloud Gateway. 
 
 ---
 
