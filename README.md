@@ -1,6 +1,6 @@
-✅ Summary for Project
+✅ Summary for Project:-
 
-📌 Project Name := Hotel Management System
+📌 Project Name := Hotel Booking Management System:,
 
 📝 Description:_
 ⏩ Hotel Management System is a full-featured web-based application built using Java 8, Spring Boot, JSP, Hibernate, and MySQL. It supports both RESTful APIs and JSP-based web views, enabling hotel staff to manage room bookings, customers, employees, and invoices efficiently. The project includes full CRUD functionality, role-based login (admin/staff), room availability tracking, and dynamic data display using Bootstrap and JSTL.
@@ -39,7 +39,128 @@
 
 ---
 
-🚀 Access Points:
+## 🔁 Business Flow – Hotel Booking Management System:-
+This section explains how the business process works from a user and hotel staff perspective.
+
+### 👥 Actors Involved:
+- **Customer** – User who wants to book a hotel room.
+- **Receptionist / Hotel Staff** – Handles room bookings and manages customer records.
+- **Admin** – Manages rooms, staff, and has full control of the system.
+
+
+### 📈 Business Flow Steps:-
+
+1. **Customer Enquiry / Walk-in / Online Access**
+   - Customer checks available rooms either online or at the hotel counter.
+
+2. **Room Search & Selection**
+   - Staff or customer filters rooms based on room type, availability, and date range.
+
+3. **Customer Details Entry**
+   - Staff adds customer name, contact info, ID proof, check-in/check-out dates.
+
+4. **Room Booking**
+   - Booking entry is created in the system.
+   - Room status is marked as “Booked”.
+   - Confirmation is generated (can be printed or viewed in UI).
+
+5. **Invoice Generation**
+   - After check-out, the system calculates billing details (duration, price per night, taxes).
+   - Invoice is generated and stored against customer record.
+
+6. **Room Status Update**
+   - After checkout, room is marked as “Available” again.
+
+7. **Admin Operations**
+   - Add/edit/delete rooms.
+   - Manage hotel staff accounts.
+   - Monitor all bookings and customers.
+   - Download reports or check logs.
+
+
+### 🔐 Access Control (Role-Based):
+| Role         | Allowed Modules                          |
+|--------------|-------------------------------------------|
+| Admin        | All modules (rooms, staff, booking, logs) |
+| Receptionist | Bookings, Customer, Invoice               |
+| Customer     | View availability (if public)             |
+
+
+💡 This flow ensures:-
+- Efficient tracking of room usage
+- No double-booking issues
+- Full control via Admin panel
+- Accurate billing & customer history
+
+---
+
+## ✅⚙️ Technical Flow – Hotel Booking Management System:-
+
+This section explains how the application works behind the scenes — from the moment a request hits the system to how data is processed and stored.
+
+### 🧭 Request Lifecycle:-
+Client (Browser / Postman) -> Spring MVC Controller (@Controller / @RestController) -> Service Layer (@Service) -> Data Access Layer (Repository / DAO) -> Database (MySQL)
+
+
+### 🔍 Component Breakdown:
+#### 1️⃣ Controller Layer (`@RestController` or `@Controller`):-
+- Handles incoming HTTP requests.
+- Maps URLs to Java methods using `@GetMapping`, `@PostMapping`, etc.
+- Calls service layer methods.
+- Returns views (for JSP) or JSON response (for REST).
+
+``java
+@GetMapping("/rooms")
+public List<Room> getAllRooms() {
+    return roomService.getAllRooms();
+}
+
+#### 2️⃣ Service Layer (@Service):-
+Contains business logic.
+Handles validations, calculations, and transformations.
+Interacts with repository (DAO) to access DB.
+Ensures separation of concerns.
+
+''java
+public List<Room> getAllRooms() {
+    return roomRepository.findAll();
+}
+
+#### 3️⃣ Repository Layer (@Repository):-
+Interfaces extending Spring Data JPA’s JpaRepository.
+Handles CRUD operations with zero SQL code.
+Automatically translates method names into SQL queries.
+
+''java
+public interface RoomRepository extends JpaRepository<Room, Long> {
+    List<Room> findByStatus(String status);
+}
+
+#### 4️⃣ Database Layer (MySQL):-
+Stores all persistent data (rooms, bookings, customers, users, etc.).
+Schema usually created using JPA annotations or schema.sql.
+
+#### 🔁 Data Flow Example: Room Booking:-
+User submits booking form from frontend (/bookings)
+Controller receives request and passes it to service layer
+Service performs validations, updates room status, and saves booking
+Repository saves data to MySQL
+Response is returned to the user (confirmation page or API response)
+
+#### 🧰 Tools Involved:-
+Layer	Technology Used
+Controller	Spring MVC (@Controller, @RestController)
+Service	Spring Framework (@Service)
+Repository	Spring Data JPA (@Repository)
+View (Web)	JSP + JSTL
+Persistence	Hibernate + JPA
+Database	MySQL
+
+💡 This structure follows MVC + Service + DAO pattern, ensuring scalability, readability, and separation of concerns.
+
+---
+
+🚀 Access Points:-
 
 ✅ Web App: `http://localhost:8080`  
 ✅ REST API (Sample): `http://localhost:8080/bookings`  
@@ -55,6 +176,24 @@
 | POST   | `/bookings`        | Create a new booking      |
 | DELETE | `/bookings/{id}`   | Delete booking by ID      |
 | PUT    | `/rooms/{id}`      | Update room status        |
+
+---
+
+📁 Folder Structure Highlights:
+
+Hotel_Management_System_Project/
+├── src/main/java/
+│ ├── controller/ # Handles web/API requests
+│ ├── model/ # Entity classes
+│ ├── repository/ # JPA repositories
+│ └── service/ # Business logic
+├── src/main/webapp/
+│ └── WEB-INF/jsp/ # JSP view templates
+├── src/main/resources/
+│ ├── application.properties
+│ └── static/ # Static assets (if any)
+├── pom.xml # Maven project dependencies
+├── .project/.classpath # Eclipse config
 
 ---
 
@@ -95,8 +234,7 @@ This project supports API documentation using **Swagger**.
 ✅ Swagger UI helps test, document, and visualize all REST endpoints in the system.
 ### 🔗 Access URL:-  http://localhost:8080/swagger-ui/
 
-### 🔧 Maven Dependency (Add in `pom.xml`)
-``xml <!-- Swagger - SpringFox -->
+### 🔧 Maven Dependency (Add in `pom.xml`) ⏩``xml <!-- Swagger - SpringFox -->
 <dependency>
   <groupId>io.springfox</groupId>
   <artifactId>springfox-boot-starter</artifactId>
@@ -105,21 +243,21 @@ This project supports API documentation using **Swagger**.
 
 ---
 
-📁 Folder Structure Highlights:
+🧬 ER Diagram (Entity Relationship):-
 
-Hotel_Management_System_Project/
-├── src/main/java/
-│ ├── controller/ # Handles web/API requests
-│ ├── model/ # Entity classes
-│ ├── repository/ # JPA repositories
-│ └── service/ # Business logic
-├── src/main/webapp/
-│ └── WEB-INF/jsp/ # JSP view templates
-├── src/main/resources/
-│ ├── application.properties
-│ └── static/ # Static assets (if any)
-├── pom.xml # Maven project dependencies
-├── .project/.classpath # Eclipse config
+## 🧬 Entity Relationship Diagram:-
+The following is a simplified ER Diagram for the Hotel Management System.
+
+```text
+┌─────────────┐      ┌──────────────┐       ┌────────────┐
+│  Customer   │─────▶│   Booking    │◀─────▶│   Room     │
+└─────────────┘      └──────────────┘       └────────────┘
+       │                                      ▲
+       │                                      │
+       ▼                                      │
+ ┌────────────┐                        ┌──────────────┐
+ │  Invoice   │                        │   Staff      │
+ └────────────┘                        └──────────────┘
 
 ---
 
