@@ -1,6 +1,6 @@
 ✅ Summary for Project:-
 
-📌 Project Title := Hotel Booking Management System:,
+📌 Project Title := Hotel Booking Management System.
 
 📝 Description:_
 ⏩ Hotel Booking Management System is a Java-based web application developed using Spring Boot and microservices architecture. It includes separate services for user authentication, room management, and bookings, with secure RESTful communication via an API Gateway. Features include JWT-based login, role-based access, AWS S3 image upload, and MySQL integration.
